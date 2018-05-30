@@ -139,15 +139,20 @@ def main():
             for url in c.notsha256:
                 writer("\nCertificate attached to \"" + str(url) + "\" does not use SHA256.\n")
 
+        writer("\n")
         for url, days in sorty:
-            writer("\n\nCertificate attached to \"" + str(url) +
-                   "\" expires in " + str(days) + " days.\n")
+            if int(days) > 366:
+                continue
+            else:
+                writer("\nCertificate attached to \"" + str(url) +
+                       "\" expires in " + str(days) + " days.\n")
 
         for url in c.has_expired:
             writer("\nCertificate attached to \"" + str(url) + "\" has expired.\n")
 
         if not c.mailer():
             raise Exception
+
     except Exception as e:
         print("Error in CertCheckHTTPS.main: " + str(e))
 
