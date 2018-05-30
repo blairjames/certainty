@@ -137,10 +137,10 @@ def main():
         if len256 > 0:
             writer("\nWarning! - " + str(len256) + " Certificates do not use SHA256.\n")
             for url in c.notsha256:
-                writer("\nCertificate attached to \"" + str(url) + "\" does not use SHA256.\n\n")
+                writer("\nCertificate attached to \"" + str(url) + "\" does not use SHA256.\n")
 
         for url, days in sorty:
-            writer("\nCertificate attached to \"" + str(url) +
+            writer("\n\nCertificate attached to \"" + str(url) +
                    "\" expires in " + str(days) + " days.\n")
 
         for url in c.has_expired:
