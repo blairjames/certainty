@@ -68,7 +68,8 @@ class CertCheckHTTPS:
         try:
             message = str(url) + " has expired."
             self.tb.lint(str(message), self.logfile)
-            self.has_expired.append(str(url))
+            if str(url) not in self.has_expired:
+                self.has_expired.append(str(url))
             return True
         except Exception as e:
             print("Error in CertCheckHTTPS.expired: " + str(e))
@@ -91,7 +92,7 @@ class CertCheckHTTPS:
                              "\" expires in " + str(days) + " days.\n", self.logfile)
                 return True
             else:
-                self.has_expired.append(str(url))
+                self.expired(str(url))
                 return False
         except Exception as e:
             print("Error in CertCheckHTTPS.days_left: " + str(e))
